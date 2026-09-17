@@ -25,7 +25,7 @@ export default function Index() {
         {/* HEADER */}
         <View style={styles.topIconRow}>
           <Image
-            source={require("@/assets/images/lessthan.png")}
+            source={require("@/assets/images/backarrow.png")}
             style={styles.plusHeader}
           />
 
@@ -34,10 +34,7 @@ export default function Index() {
             <Text style={styles.subtext}>jim_davis_garfield</Text>
           </View>
 
-          <Image
-            source={require("@/assets/images/plus.png")}
-            style={styles.plusHeader}
-          />
+          <View style={styles.plusHeader} />
         </View>
         {/* HEADER END*/}
 
@@ -76,12 +73,21 @@ export default function Index() {
         {/* Text Section END */}
 
         {/* Buttons Members */}
-        <Pressable
-          style={styles.button}
-          onPress={() => Alert.alert("Message Button pressed")}
-        >
-          <Text style={styles.buttonText}>Follow ---- Message</Text>
-        </Pressable>
+        <View style={styles.buttonRow}>
+          <Pressable
+            style={styles.followButton}
+            onPress={() => Alert.alert("Follow Button pressed")}
+          >
+            <Text style={styles.followButtonText}>Follow</Text>
+          </Pressable>
+
+          <Pressable
+            style={styles.messageButton}
+            onPress={() => Alert.alert("Message Button pressed")}
+          >
+            <Text style={styles.buttonText}>Message</Text>
+          </Pressable>
+        </View>
         {/* Buttons Members END */}
 
         {/* 3x4 GRID*/}
@@ -189,7 +195,26 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     gap: 2,
   },
-  button: {
+  buttonRow: {
+    flexDirection: "row",
+    gap: 8,
+    marginBottom: 20,
+  },
+  followButton: {
+    flex: 1,
+    backgroundColor: "#0095F6",
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 10,
+    borderRadius: 8,
+  },
+  followButtonText: {
+    fontWeight: "bold",
+    fontSize: 14,
+    color: "#FFFFFF",
+  },
+  messageButton: {
+    flex: 1,
     backgroundColor: "#FFFFFF",
     borderColor: "#ececec",
     borderWidth: 2,
@@ -197,7 +222,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingVertical: 10,
     borderRadius: 8,
-    marginBottom: 20,
   },
   buttonText: {
     fontWeight: "bold",
