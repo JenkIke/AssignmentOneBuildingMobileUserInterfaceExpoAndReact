@@ -11,68 +11,69 @@ import {
 
 import { Stack } from "expo-router";
 
-export default function Index() {
+export default function ProfileScreen() {
   return (
     <View style={styles.container}>
-      {/* HIDE OLD HEADER */}
+      {/* Hide the default Expo Router header for this screen */}
       <Stack.Screen options={{ headerShown: false }} />
 
-      {/* SCROLLVIEW */}
+      {/* Scrollable Content */}
       <ScrollView
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* HEADER */}
-        <View style={styles.topIconRow}>
+        {/* Profile Header */}
+        <View style={styles.headerRow}>
           <Image
             source={require("@/assets/images/backarrow.png")}
-            style={styles.plusHeader}
+            style={styles.headerIcon}
           />
 
-          <View style={styles.topHeader}>
+          <View style={styles.titleGroup}>
             <Text style={styles.header}>Public Profile</Text>
             <Text style={styles.subtext}>jim_davis_garfield</Text>
           </View>
 
-          <View style={styles.plusHeader} />
+          {/* Invisible spacer keeps the title centered now that the trailing icon was removed */}
+          <View style={styles.headerIcon} />
         </View>
-        {/* HEADER END*/}
+        {/* End Profile Header */}
 
-        {/* icon + numbers + post .. */}
-        <View style={styles.rowsIcons}>
-          <View style={styles.whiteCircleIcon}>
+        {/* Avatar & Stats Row */}
+        <View style={styles.statsRow}>
+          <View style={styles.avatarFrame}>
             <Image
               source={require("@/assets/images/profile.jpg")}
-              style={styles.circleIcon}
+              style={styles.avatarImage}
             />
           </View>
 
-          <View style={styles.alignItemsCenter}>
+          <View style={styles.statItem}>
             <Text style={styles.boldText}>1,624</Text>
             <Text>posts</Text>
           </View>
 
-          <View style={styles.alignItemsCenter}>
+          <View style={styles.statItem}>
             <Text style={styles.boldText}>1M</Text>
             <Text>followers</Text>
           </View>
 
-          <View style={styles.alignItemsCenter}>
+          <View style={styles.statItem}>
             <Text style={styles.boldText}>32</Text>
             <Text>following</Text>
           </View>
         </View>
-        {/* icon + numbers + post .. END*/}
+        {/* End Avatar & Stats Row */}
 
-        {/* Text Section */}
-        <View style={styles.textUp}>
+        {/* Bio Section */}
+        <View style={styles.bioSection}>
           <Text style={styles.displayName}>Garfield</Text>
           <Text>Weekly Comics strips by artist Jim Davis</Text>
           <Text>Lasagna enthusiast. Anti Mondays. Napping influencer.</Text>
         </View>
-        {/* Text Section END */}
+        {/* End Bio Section */}
 
-        {/* Buttons Members */}
+        {/* Follow & Message Buttons */}
         <View style={styles.buttonRow}>
           <Pressable
             style={styles.followButton}
@@ -88,37 +89,38 @@ export default function Index() {
             <Text style={styles.buttonText}>Message</Text>
           </Pressable>
         </View>
-        {/* Buttons Members END */}
+        {/* End Follow & Message Buttons */}
 
-        {/* 3x4 GRID*/}
+        {/* Photo Grid */}
         <View style={styles.gridContainer}>
-          {gridImages.map((imageSource, index) => (
+          {profileGridImages.map((imageSource, index) => (
             <View key={index} style={styles.gridBox}>
               <Image
                 source={imageSource}
-                style={styles.gridimage}
+                style={styles.gridImage}
                 resizeMode="cover"
               />
             </View>
           ))}
         </View>
-        {/* GRID END */}
+        {/* End Photo Grid */}
       </ScrollView>
-      {/* scroll view END */}
+      {/* End Scrollable Content */}
 
-      {/* FLOATING FOOTER BUTTON */}
+      {/* Floating Footer Alert Button */}
       <View style={styles.floatButton}>
         <Button
           title="Alert"
           onPress={() => Alert.alert("Alert Button pressed")}
         />
       </View>
-      {/* FLOATING FOOTER BUTTON END*/}
+      {/* End Floating Footer Alert Button */}
     </View>
   );
 }
 
-const gridImages = [
+// Source images rendered in the photo grid below
+const profileGridImages = [
   require("@/assets/images/garf01.jpg"),
   require("@/assets/images/garf02.jpg"),
   require("@/assets/images/garf03.jpg"),
@@ -151,31 +153,31 @@ const styles = StyleSheet.create({
   subtext: {
     color: "#bcbcbc",
   },
-  topHeader: {
+  titleGroup: {
     alignItems: "center",
   },
-  topIconRow: {
+  headerRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     paddingBottom: 20,
   },
-  rowsIcons: {
+  statsRow: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: 10,
   },
-  plusHeader: {
+  headerIcon: {
     width: 25,
     height: 25,
   },
-  circleIcon: {
+  avatarImage: {
     width: 90,
     height: 90,
     borderRadius: 45,
   },
-  whiteCircleIcon: {
+  avatarFrame: {
     width: 100,
     height: 100,
     borderRadius: 50,
@@ -188,10 +190,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 18,
   },
-  alignItemsCenter: {
+  statItem: {
     alignItems: "center",
   },
-  textUp: {
+  bioSection: {
     marginTop: 15,
     marginBottom: 15,
     gap: 2,
@@ -240,13 +242,13 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   gridBox: {
-    // 32.2%
+    // Slightly under 33% so 3 columns fit alongside the gridContainer gap
     width: "32.2%",
     aspectRatio: 1,
     backgroundColor: "#e1e1e1",
     overflow: "hidden",
   },
-  gridimage: {
+  gridImage: {
     width: "100%",
     height: "100%",
   },
