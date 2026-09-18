@@ -66,7 +66,7 @@ export default function Index() {
 
         {/* Text Section */}
         <View style={styles.textUp}>
-          <Text style={{ fontWeight: "bold" }}>Garfield</Text>
+          <Text style={styles.displayName}>Garfield</Text>
           <Text>Weekly Comics strips by artist Jim Davis</Text>
           <Text>Lasagna enthusiast. Anti Mondays. Napping influencer.</Text>
         </View>
@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingTop: 60,
     paddingHorizontal: 20,
+    // Reserves space so the last grid row isn't hidden behind the floating button
     paddingBottom: 110,
   },
   header: {
@@ -194,6 +195,9 @@ const styles = StyleSheet.create({
     marginTop: 15,
     marginBottom: 15,
     gap: 2,
+  },
+  displayName: {
+    fontWeight: "bold",
   },
   buttonRow: {
     flexDirection: "row",
@@ -251,6 +255,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
+    // paddingTop/paddingBottom control the button's floating offset from the screen edge
     paddingBottom: 50,
     paddingTop: 10,
     paddingHorizontal: 20,
